@@ -45,7 +45,7 @@ public class SinglyLinkedList<E> implements List<E> {
          * @return the following node
          */
         public Node<E> getNext() {
-            // TODO
+            //
             return next;
         }
 
@@ -57,7 +57,7 @@ public class SinglyLinkedList<E> implements List<E> {
          * @param n the node that should follow this one
          */
         public void setNext(Node<E> n) {
-            // TODO
+            //
             this.next = n;
 
         }
@@ -205,6 +205,7 @@ public class SinglyLinkedList<E> implements List<E> {
     }
 
 
+
     //@Override
     public Iterator<E> iterator() {
         return new SinglyLinkedListIterator<E>();
@@ -259,4 +260,36 @@ public class SinglyLinkedList<E> implements List<E> {
         System.out.println(ll);
 
     }
+
+    public void reverse() {
+        Node<E> prev = null;
+        Node<E> curr = head;
+        Node<E> next;
+
+        while (curr != null) {
+            next = curr.getNext();  // 用 getter 更统一
+            curr.setNext(prev);     // 用 setter 更统一
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
+    }
+
+    public SinglyLinkedList<E> cloneList() {
+        SinglyLinkedList<E> copy = new SinglyLinkedList<>();
+
+        Node<E> curr = head;
+        while (curr != null) {
+            copy.addLast(curr.getElement());  // ✅ 用 getElement()
+            curr = curr.getNext();           // ✅ 用 getNext()
+        }
+
+        return copy;
+    }
+
+
 }
+
+
+
