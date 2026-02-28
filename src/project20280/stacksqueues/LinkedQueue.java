@@ -8,10 +8,19 @@ public class LinkedQueue<E> implements Queue<E> {
     private DoublyLinkedList<E> ll;
 
     public static void main(String[] args) {
+        // test logic
+        LinkedQueue<Integer> q = new LinkedQueue<>();
+        q.enqueue(1);
+        q.enqueue(2);
+        System.out.println("Queue: " + q);       // [1, 2]
+        System.out.println("First: " + q.first()); // 1
+        System.out.println("Dequeue: " + q.dequeue()); // 1
+        System.out.println("After: " + q);       // [2]
     }
 
     public LinkedQueue() {
         // TODO
+        ll = new DoublyLinkedList<>();
     }
 
     @Override
@@ -27,18 +36,21 @@ public class LinkedQueue<E> implements Queue<E> {
     @Override
     public void enqueue(E e) {
         // TODO
+        ll.addLast(e);
     }
 
     @Override
     public E first() {
         // TODO
-        return null;
+        if (isEmpty()) return null;
+        return ll.first();
     }
 
     @Override
     public E dequeue() {
         // TODO
-        return null;
+        if (isEmpty()) return null;
+        return ll.removeFirst();
     }
 
     public String toString() {
