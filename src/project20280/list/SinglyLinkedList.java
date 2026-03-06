@@ -261,19 +261,17 @@ public class SinglyLinkedList<E> implements List<E> {
 
     }
 
+    private Node<E> reverseHelper(Node<E> node) {
+        if (node == null || node.getNext() == null) return node;
+        Node<E> newHead = reverseHelper(node.getNext());
+        node.getNext().setNext(node);
+        node.setNext(null);
+        return newHead;
+    }
+
+    // replaved the reverse() before
     public void reverse() {
-        Node<E> prev = null;
-        Node<E> curr = head;
-        Node<E> next;
-
-        while (curr != null) {
-            next = curr.getNext();  // 用 getter 更统一
-            curr.setNext(prev);     // 用 setter 更统一
-            prev = curr;
-            curr = next;
-        }
-
-        head = prev;
+        head = reverseHelper(head);
     }
 
     public SinglyLinkedList<E> cloneList() {
@@ -281,10 +279,23 @@ public class SinglyLinkedList<E> implements List<E> {
 
         Node<E> curr = head;
         while (curr != null) {
-            copy.addLast(curr.getElement());  // ✅ 用 getElement()
-            curr = curr.getNext();           // ✅ 用 getNext()
+            copy.addLast(curr.getElement());  // getElement()
+            curr = curr.getNext();           // getNext()
         }
 
+        return copy;
+    }
+
+    private void recursiveCopyHelper(Node<E> node, SinglyLinkedList<E> copy) {
+        if (node == null) return;
+        copy.addLast(node.getElement());
+        recursiveCopyHelper(node.getNext(), copy);
+    }
+
+    // each time a node is processed recursively, add the value to the end of the new list, then process next
+    public SinglyLinkedList<E> recursiveCopy() {
+        SinglyLinkedList<E> copy = new SinglyLinkedList<>();
+        recursiveCopyHelper(head, copy);
         return copy;
     }
 

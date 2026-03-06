@@ -112,6 +112,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
         int result = bt5.diameter();
         System.out.println("The diameter of this tree is: " + result + " (Result should be 13)");
+
+
+        // test recusion_q9.....
+        System.out.println("\ntesting q9...");
+        bt1.printLeaves();  // should output [D, G, H, F]
     }
 
 
@@ -481,6 +486,24 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
         return Math.max(pathThroughNode, Math.max(lDiameter, rDiameter));
     }
+
+    // recusion_q9: print all leaf nodes from left to right
+    public void printLeaves() {
+        List<E> leaves = new ArrayList<>();
+        if (!isEmpty()) collectLeaves(root, leaves);
+        System.out.println(leaves);
+    }
+
+    private void collectLeaves(Node<E> node, List<E> leaves) {
+        if (node == null) return;
+        if (node.getLeft() == null && node.getRight() == null) {
+            leaves.add(node.getElement());
+            return;
+        }
+        collectLeaves(node.getLeft(), leaves);
+        collectLeaves(node.getRight(), leaves);
+    }
+
 
     private int nodeHeight(Node<E> node) {
         if (node == null) {
