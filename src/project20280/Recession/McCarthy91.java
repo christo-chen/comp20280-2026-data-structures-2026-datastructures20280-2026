@@ -9,10 +9,13 @@ public class McCarthy91 {
     // McCarthy-91 function
     // M(n) = n - 10        if n > 100
     // M(n) = M(M(n + 11))  if n <= 100
-    public static int M(int n) {
-        if (n > 100) {
+    public static int M(int n)
+    {
+        if (n > 100)
+        {
             return n - 10;
-        } else {
+        } else
+        {
             return M(M(n + 11));
         }
     }

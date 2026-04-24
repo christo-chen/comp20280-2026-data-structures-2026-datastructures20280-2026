@@ -383,14 +383,17 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
 
     // q2
-    public void createLevelOrder(E[] arr) {
+    public void createLevelOrder(E[] arr)
+    {
         this.root = null;
         this.size = 0;
         this.root = createLevelOrderHelper(arr, null, 0);
     }
 
-    private Node<E> createLevelOrderHelper(E[] arr, Node<E> parent, int i) {
-        if (i < arr.length && arr[i] != null) {
+    private Node<E> createLevelOrderHelper(E[] arr, Node<E> parent, int i)
+    {
+        if (i < arr.length && arr[i] != null)
+        {
             Node<E> curr = createNode(arr[i], parent, null, null);
             size++;
             curr.setLeft(createLevelOrderHelper(arr, curr, 2 * i + 1));
@@ -496,7 +499,8 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
 
     private void collectLeaves(Node<E> node, List<E> leaves) {
         if (node == null) return;
-        if (node.getLeft() == null && node.getRight() == null) {
+        if (node.getLeft() == null && node.getRight() == null)  // leave node judgement
+        {
             leaves.add(node.getElement());
             return;
         }

@@ -20,7 +20,7 @@ public class Fibonacci {
 
     public static long fibMemo(int n) {
         memoCalls++;
-        if (memo.containsKey(n)) return memo.get(n);
+        if (memo.containsKey(n)) return memo.get(n); // After calculation return directly
         if (n <= 1) {
             memo.put(n, (long) n);
             return n;
